@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        PlaySound("Chunky");
+        PlaySound("Chunky");//continous sounds when game starts
     }
 public void PlaySound(string name)
     {
