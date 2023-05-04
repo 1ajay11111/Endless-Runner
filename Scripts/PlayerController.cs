@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     private bool isSliding = false;
     
+    
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveDir);
         else
             controller.Move(diff);
+        
 
     }
     private void FixedUpdate()
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         direction.y = jumpForce;
+        FindObjectOfType<AudioManager>().PlaySound("jump");
 
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -110,8 +113,11 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.tag =="Obstacle")
         {
             PlayerManager.gameover = true;
+            FindObjectOfType<AudioManager>().PlaySound("gameover");
         }
     }
+
+   
     private IEnumerator Slide()
     {
         isSliding = true;
